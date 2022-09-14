@@ -1,0 +1,18 @@
+{
+  "name": "webservers",
+  "version": "1.0.0",
+  "description": "## Topics * [ ] Web Servers * [ ] Express * [ ] MiddleWare * [ ] EJS",
+  "main": "basic-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
