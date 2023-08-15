@@ -1,46 +1,59 @@
 const http = require('http');
 const PORT = 3000;
 
-// routes
+
 const getHome = (req, res) => {
-  res.end('this is a get request to "/"');
+  res.end('this is the home route')
+};
+
+const getAbout = (req, res) => {
+  res.end('this is the about page');
+};
+
+const getStuff = (reg, res) => {
+  res.end('this is the stuff route');
+};
+
+const getProducts = (req, res) => {
+  res.end('this is the products route');
 }
 
-const getStuff = (req, res) => {
-  res.end('this is a request to the stuff route');
-}
-
-//object for object lookup, another way to handle different conditions
 const routes = {
   'GET /': getHome,
-  'GET /stuff': getStuff, 
+  'GET /about': getAbout,
+  'GET /stuff': getStuff,
+  'GET /products': getProducts,
 };
 
 
-const server = http.createServer((req,res) => {
+const server = http.createServer((req, res) => {
+  console.log('request', req);
   const route = `${req.method} ${req.url}`
+  console.log('route', route);
 
-// switch(route) {
-//   case 'GET /':
-//     res.end('this is a get to "/"')
-//     break;
-//   case 'GET /stuff':
-//     res.end('this is the stuff route');
-//     break;
-//   default:
-//     res.end('there is no such route');
-//}
+  if(!routes[route]) {
+    return res.end('Route Not Found');
+  }
 
-// same as above except uses Object lookup and abstracts the inner working away to another function.
-  if (route in routes) {
-    routes[route](req, res);
-  }
-  else {
-    res.end('Route Not Found');
-  }
-    
+  // same as switch below but leverages object lookup to clean up code and
+  // abstract away the inner workings of the routes.
+  routes[route](req, res)
+
+  // switch (route) {
+  //   case 'GET /':
+  //     res.end('this is the base response from /');
+  //     break;
+  //   case 'GET /stuff':
+  //     res.end('this is the stuff route')
+  //     break;
+  //   default:
+  //     res.end('unknown route')
+  //     return;
+  // }
+
+
 });
 
 server.listen(PORT, () => {
-  console.log(`server is listening on ${PORT} `);
-})
+  console.log(`server is running on port: ${PORT}`);
+});

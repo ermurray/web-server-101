@@ -4,15 +4,22 @@
   "description": "## Topics * [ ] Web Servers * [ ] Express * [ ] MiddleWare * [ ] EJS",
   "main": "basic-server.js",
   "scripts": {
+    "start": "node express-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ermurray/web-server-101.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "ejs": "^3.1.8",
-    "express": "^4.18.1"
+  "bugs": {
+    "url": "https://github.com/ermurray/web-server-101/issues"
   },
-  "devDependencies": {
+  "homepage": "https://github.com/ermurray/web-server-101#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
     "morgan": "^1.10.0"
   }
 }

@@ -1,42 +1,37 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const app = express();
-const port = 3000;
+const morgan = require('morgan')
+const PORT = 8080;
 
-// basic syntax for custom middleware
+const app = express();
 // app.use((req, res, next) => {
-//   console.log('new request in middleware',req);
+//   console.log('new request in middleware', req);
 //   next();
-// });
-app.set('view engine', 'ejs');
+// } )
 
 app.use(morgan('dev'));
-// app.use(bodyParser.json());
+
+// app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
   const templateVars = {
     user: 'Eric',
     message: 'Hello World',
-    allowed: false,
-    list: [0, 1, 2, 3, 4, 5]
+    allowed: true,
+    list: [0,1,2,3,4,5]
   }
+
   res.render('index', templateVars)
 });
 
-app.get('/stuff', (req, res) => {
-  res.send('this is some stuff');
+app.get('/about', (req, res) => {
+  res.send('this is the about path');
 });
 
-app.post('/things', (req, res) =>{
-  console.log('req', req);
+app.get('/stuff', (req, res) => {
+  res.send('this is the stuff route');
+});
 
-  if( req.body){
-    return res.status(200).send('ok');
-  }
-  res.status(500).send('its not okay');
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on: http://localhost:${PORT}`)
 });
